@@ -21,7 +21,9 @@ read = sys.stdin.readline
 
 goChannel = read().rstrip()
 brokenNum = int(read().rstrip())
-broken = read().rstrip().split(" ")
+
+if brokenNum != 0:
+   broken = read().rstrip().split(" ")
 
 #broken = list(map(int, broken))
 
@@ -30,14 +32,24 @@ count = 0
 
 if(goChannel == "100"):
    print(0)
+   exit()
+elif(brokenNum==0):
+   if(len(goChannel) < abs(100 - int(goChannel))):
+      print(len(goChannel))
+   else:
+      print(100 - int(goChannel))
+   exit()
 else:
    for i in range(len(goChannel)):
-      if goChannel[i] not in broken:
-         makeChannel = makeChannel + goChannel[i]
-      else:
-         makeChannel = makeChannel + str(nextNum(broken, i, goChannel, makeChannel))
+      # if goChannel[i] not in broken:
+      #    makeChannel = makeChannel + goChannel[i]
+      # else:
+      makeChannel = makeChannel + str(nextNum(broken, i, goChannel, makeChannel))
 
-   print(len(makeChannel) + abs(int(makeChannel) - int(goChannel)))
+   if(abs(int(goChannel) - 100) < len(makeChannel) + abs(int(makeChannel) - int(goChannel))):
+      print(int(goChannel) - 100)
+   else:
+      print(len(makeChannel) + abs(int(makeChannel) - int(goChannel)))
 
 
 
